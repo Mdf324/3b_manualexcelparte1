@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Básico de Excel - Parte 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .manual-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            padding: 35px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .excel-icon {
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            width: 70px;
+            height: 70px;
+            background-color: #217346;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #2e7d32;
+            margin-bottom: 25px;
+            font-size: 28px;
+            border-left: 6px solid #2e7d32;
+            padding-left: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 12px;
+            font-size: 26px;
+        }
+        
+        h3 {
+            color: #444;
+            margin: 25px 0 15px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        h3 i {
+            margin-right: 10px;
+            color: #2e7d32;
+        }
+        
+        h4 {
+            color: #555;
+            margin: 20px 0 12px;
+            font-size: 18px;
+            padding-left: 15px;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            font-size: 17px;
+            text-align: justify;
+        }
+        
+        .step {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 18px 0;
+            border-left: 4px solid #2e7d32;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background-color: #2e7d32;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            margin-right: 15px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .tip {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .interface-img {
+            width: 100%;
+            max-width: 900px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .toolbar {
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .tool {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 10px 15px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            cursor: default;
+            transition: all 0.2s;
+            min-width: 120px;
+            justify-content: center;
+        }
+        
+        .tool:hover {
+            background-color: #e8f5e9;
+            border-color: #2e7d32;
+            transform: translateY(-2px);
+        }
+        
+        .tool i {
+            margin-right: 8px;
+            color: #2e7d32;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            padding: 30px;
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .next-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 17px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .next-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 25px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+        
+        .shortcut {
+            display: inline-block;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 4px 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+            margin: 0 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .exercise {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .two-columns {
+            display: flex;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #2e7d32;
+        }
+        
+        .feature-card h4 {
+            color: #2e7d32;
+            margin-top: 0;
+            border-bottom: none;
+            padding-left: 0;
+        }
+        
+        .table-example {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .table-example th {
+            background-color: #2e7d32;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .table-example td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .table-example tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .table-example tr:hover {
+            background-color: #e8f5e9;
+        }
+        
+        .excel-grid {
+            display: inline-block;
+            border: 2px solid #2e7d32;
+            margin: 15px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .excel-row {
+            display: flex;
+        }
+        
+        .excel-cell {
+            width: 80px;
+            height: 30px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            background-color: white;
+        }
+        
+        .excel-header {
+            background-color: #e8f5e9;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .excel-icon {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0 auto 20px;
+            }
+            
+            .two-columns {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="manual-container">
+        <div class="header">
+            <div class="excel-icon">X</div>
+            <h1>Manual Básico de Microsoft Excel</h1>
+            <p>Parte 1: Introducción, Interfaz y Funciones Básicas</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2><i class="fas fa-info-circle"></i> ¿Qué es Microsoft Excel?</h2>
+                <p>Microsoft Excel es una hoja de cálculo electrónica que te permite organizar, analizar y almacenar datos en forma de tabla. Es como un cuaderno digital con muchas hojas donde puedes realizar cálculos automáticos, crear gráficos y analizar información.</p>
+                
+                <div class="two-columns">
+                    <div class="column">
+                        <h4>¿Para qué se utiliza Excel?</h4>
+                        <ul>
+                            <li>Crear listas y bases de datos</li>
+                            <li>Realizar cálculos matemáticos y financieros</li>
+                            <li>Analizar datos con tablas y gráficos</li>
+                            <li>Elaborar presupuestos y planillas</li>
+                            <li>Organizar horarios y calendarios</li>
+                            <li>Crear informes y reportes</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>Ventajas de usar Excel</h4>
+                        <ul>
+                            <li>Automatiza cálculos complejos</li>
+                            <li>Permite visualizar datos con gráficos</li>
+                            <li>Es ideal para organizar información</li>
+                            <li>Fácil de aprender y usar</li>
+                            <li>Compatible con otros programas de Office</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <p><strong>Dato curioso:</strong> Excel fue lanzado por primera vez en 1985 para Macintosh. La versión para Windows apareció en 1987 y desde entonces se ha convertido en la hoja de cálculo más utilizada en el mundo.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i class="fas fa-play-circle"></i> Primeros Pasos con Excel</h2>
+                
+                <h3><i class="fas fa-desktop"></i> Iniciar Microsoft Excel</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        Haz clic en el botón <strong>Inicio</strong> de Windows y busca "Excel" o "Microsoft Excel".
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        Haz clic en el icono de Excel para abrir el programa.
+                    </div>
+                </div>
+                
+                <h3><i class="fas fa-file-excel"></i> Crear un Nuevo Libro</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        Al abrir Excel, verás varias plantillas disponibles.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        Haz clic en <strong>"Libro en blanco"</strong> para comenzar desde cero.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        ¡Ya puedes empezar a trabajar en tu hoja de cálculo!
+                    </div>
+                </div>
+                
+                <div class="warning">
+                    <p><strong>Consejo:</strong> Los archivos de Excel se llaman "libros" y pueden contener múltiples "hojas". Por defecto, cada nuevo libro viene con una hoja llamada "Hoja1".</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i class="fas fa-window-maximize"></i> Conociendo la Interfaz de Excel</h2>
+                <p>La interfaz de Excel puede parecer complicada al principio, pero conocer sus componentes te ayudará a trabajar de manera eficiente.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-bars"></i> La Cinta de Opciones</h4>
+                        <p>La barra horizontal en la parte superior con todas las herramientas organizadas en pestañas (Inicio, Insertar, Diseño de página, etc.).</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-table"></i> Hoja de Cálculo</h4>
+                        <p>La cuadrícula principal formada por filas (números) y columnas (letras) donde introduces y trabajas con tus datos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-square"></i> Celdas</h4>
+                        <p>Cada cuadrito de la hoja se llama celda. Se identifican por la combinación de columna y fila (ej: A1, B2, C3).</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-edit"></i> Barra de Fórmulas</h4>
+                        <p>Donde puedes ver y editar el contenido de la celda seleccionada, especialmente útil para fórmulas.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-layer-group"></i> Hojas</h4>
+                        <p>Pestañas en la parte inferior que te permiten tener múltiples hojas en un mismo libro de Excel.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-info-circle"></i> Barra de Estado</h4>
+                        <p>En la parte inferior, muestra información como el resultado de operaciones básicas y modos de visualización.</p>
+                    </div>
+                </div>
+                
+                <h3><i class="fas fa-bars"></i> Explorando las Pestañas Principales</h3>
+                
+                <div class="toolbar">
+                    <div class="tool"><i class="fas fa-home"></i> Inicio</div>
+                    <div class="tool"><i class="fas fa-insert"></i> Insertar</div>
+                    <div class="tool"><i class="fas fa-paint-brush"></i> Diseño de Página</div>
+                    <div class="tool"><i class="fas fa-calculator"></i> Fórmulas</div>
+                    <div class="tool"><i class="fas fa-database"></i> Datos</div>
+                    <div class="tool"><i class="fas fa-eye"></i> Revisar</div>
+                    <div class="tool"><i class="fas fa-eye"></i> Vista</div>
+                </div>
+                
+                <h4>Pestaña Inicio</h4>
+                <p>Contiene las herramientas más utilizadas: formato de celdas, estilos, edición básica y organización de datos.</p>
+                
+                <h4>Pestaña Insertar</h4>
+                <p>Permite añadir elementos a tu hoja: tablas, gráficos, imágenes, formas y otros objetos.</p>
+                
+                <h4>Pestaña Fórmulas</h4>
+                <p>Agrupa todas las funciones y fórmulas disponibles en Excel, organizadas por categorías.</p>
+                
+                <div class="tip">
+                    <p><strong>Personalización:</strong> Puedes personalizar la cinta de opciones haciendo clic derecho sobre ella y seleccionando "Personalizar la cinta de opciones". Esto te permite añadir o quitar herramientas según tus necesidades.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i class="fas fa-table-cells"></i> Trabajando con Celdas y Datos</h2>
+                
+                <h3><i class="fas fa-mouse-pointer"></i> Seleccionar Celdas</h3>
+                <p>Para trabajar con celdas, primero debes seleccionarlas:</p>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Celda individual:</strong> Haz clic directamente sobre la celda.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Rango de celdas:</strong> Haz clic y arrastra el mouse sobre el grupo de celdas.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Fila o columna completa:</strong> Haz clic en el número de fila o letra de columna.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>Todo el documento:</strong> Haz clic en el triángulo entre las letras de columnas y números de filas.
+                    </div>
+                </div>
+                
+                <h3><i class="fas fa-keyboard"></i> Introducir Datos</h3>
+                <p>Excel reconoce diferentes tipos de datos:</p>
+                
+                <div class="excel-grid">
+                    <div class="excel-row">
+                        <div class="excel-cell excel-header">A</div>
+                        <div class="excel-cell excel-header">B</div>
+                        <div class="excel-cell excel-header">C</div>
+                    </div>
+                    <div class="excel-row">
+                        <div class="excel-cell">1</div>
+                        <div class="excel-cell">Texto</div>
+                        <div class="excel-cell">Descripción</div>
+                    </div>
+                    <div class="excel-row">
+                        <div class="excel-cell">2</div>
+                        <div class="excel-cell">Números</div>
+                        <div class="excel-cell">100, 25.5, -15</div>
+                    </div>
+                    <div class="excel-row">
+                        <div class="excel-cell">3</div>
+                        <div class="excel-cell">Fechas</div>
+                        <div class="excel-cell">15/03/2024</div>
+                    </div>
+                    <div class="excel-row">
+                        <div class="excel-cell">4</div>
+                        <div class="excel-cell">Fórmulas</div>
+                        <div class="excel-cell">=A2+B2</div>
+                    </div>
+                </div>
+                
+                <h4>Tipos de datos en Excel</h4>
+                <ul>
+                    <li><strong>Texto:</strong> Nombres, direcciones, descripciones (se alinean a la izquierda)</li>
+                    <li><strong>Números:</strong> Valores numéricos para cálculos (se alinean a la derecha)</li>
+                    <li><strong>Fechas y horas:</strong> Información temporal con formato especial</li>
+                    <li><strong>Fórmulas:</strong> Cálculos que comienzan con el signo =</li>
+                </ul>
+                
+                <h3><i class="fas fa-edit"></i> Editar y Modificar Datos</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Para editar una celda:</strong> Haz doble clic en la celda o selecciónala y presiona F2.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Para borrar contenido:</strong> Selecciona la celda y presiona la tecla Supr.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Para copiar y pegar:</strong> Usa <span class="shortcut">Ctrl + C</span> y <span class="shortcut">Ctrl + V</span>.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i class="fas fa-calculator"></i> Primeros Pasos con Fórmulas</h2>
+                <p>Las fórmulas son lo que hace poderoso a Excel. Te permiten realizar cálculos automáticamente.</p>
+                
+                <h3><i class="fas fa-equals"></i> Estructura de una Fórmula</h3>
+                <p>Todas las fórmulas en Excel comienzan con el signo <strong>=</strong> (igual).</p>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        Haz clic en la celda donde quieres el resultado.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        Escribe <strong>=</strong> para comenzar la fórmula.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        Escribe la operación o función que deseas realizar.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        Presiona <strong>Enter</strong> para completar la fórmula.
+                    </div>
+                </div>
+                
+                <h3><i class="fas fa-plus-minus"></i> Operadores Básicos</h3>
+                <p>Excel utiliza los operadores matemáticos comunes:</p>
+                
+                <table class="table-example">
+                    <tr>
+                        <th>Operador</th>
+                        <th>Función</th>
+                        <th>Ejemplo</th>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <td>+</td>
+                        <td>Suma</td>
+                        <td>=5+3</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                        <td>Resta</td>
+                        <td>=10-4</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>*</td>
+                        <td>Multiplicación</td>
+                        <td>=3*4</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>/</td>
+                        <td>División</td>
+                        <td>=15/3</td>
+                        <td>5</td>
+                    </tr>
+                </table>
+                
+                <h3><i class="fas fa-hashtag"></i> Referencias a Celdas</h3>
+                <p>En lugar de usar números directamente, puedes referenciar celdas:</p>
+                
+                <div class="excel-grid">
+                    <div class="excel-row">
+                        <div class="excel-cell excel-header">A</div>
+                        <div class="excel-cell excel-header">B</div>
+                    </div>
+                    <div class="excel-row">
+                        <div class="excel-cell">1</div>
+                        <div class="excel-cell">10</div>
+                    </div>
+                    <div class="excel-row">
+                        <div class="excel-cell">2</div>
+                        <div class="excel-cell">5</div>
+                    </div>
+                    <div class="excel-row">
+                        <div class="excel-cell">3</div>
+                        <div class="excel-cell">=A1+A2</div>
+                    </div>
+                </div>
+                
+                <p>En este ejemplo, la celda A3 mostrará el resultado 15 (10+5). Si cambias los valores en A1 o A2, el resultado en A3 se actualizará automáticamente.</p>
+                
+                <div class="tip">
+                    <p><strong>Consejo importante:</strong> Siempre usa referencias a celdas en lugar de valores fijos en tus fórmulas. Esto hace que tus cálculos sean dinámicos y se actualicen automáticamente cuando cambien los datos.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i class="fas fa-save"></i> Guardar tu Trabajo</h2>
+                <p>Guardar correctamente tu libro de Excel es fundamental para no perder tu trabajo.</p>
+                
+                <h3><i class="fas fa-save"></i> Guardar un Libro por Primera Vez</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        Haz clic en el icono de disco en la barra de acceso rápido, o ve a <strong>"Archivo"</strong> > <strong>"Guardar"</strong>.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        Selecciona la ubicación donde quieres guardar el archivo.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        Escribe un nombre descriptivo para tu libro en el campo <strong>"Nombre de archivo"</strong>.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        Asegúrate de que el tipo de archivo sea <strong>"Libro de Excel (*.xlsx)"</strong>.
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        Haz clic en <strong>"Guardar"</strong>.
+                    </div>
+                </div>
+                
+                <h3><i class="fas fa-file-export"></i> Guardar Como</h3>
+                <p>Usa "Guardar como" cuando quieras:</p>
+                <ul>
+                    <li>Crear una copia del libro con otro nombre</li>
+                    <li>Guardar el libro en una ubicación diferente</li>
+                    <li>Cambiar el formato del libro (por ejemplo, a PDF)</li>
+                </ul>
+                
+                <div class="tip">
+                    <p><strong>Buenas prácticas:</strong> Guarda tu libro frecuentemente mientras trabajas. Usa nombres descriptivos para tus archivos y organízalos en carpetas temáticas. Excel guarda automáticamente cada cierto tiempo, pero no confíes solo en esta función.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i class="fas fa-magic"></i> Atajos de Teclado Esenciales</h2>
+                <p>Los atajos de teclado te permiten trabajar más rápido en Excel:</p>
+                
+                <div class="two-columns">
+                    <div class="column">
+                        <h4>Atajos de Gestión</h4>
+                        <ul>
+                            <li><span class="shortcut">Ctrl + G</span> - Guardar libro</li>
+                            <li><span class="shortcut">Ctrl + A</span> - Abrir nuevo libro</li>
+                            <li><span class="shortcut">Ctrl + R</span> - Abrir libro existente</li>
+                            <li><span class="shortcut">Ctrl + P</span> - Imprimir</li>
+                            <li><span class="shortcut">Ctrl + W</span> - Cerrar libro</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>Atajos de Edición</h4>
+                        <ul>
+                            <li><span class="shortcut">Ctrl + Z</span> - Deshacer</li>
+                            <li><span class="shortcut">Ctrl + Y</span> - Rehacer</li>
+                            <li><span class="shortcut">Ctrl + X</span> - Cortar</li>
+                            <li><span class="shortcut">Ctrl + C</span> - Copiar</li>
+                            <li><span class="shortcut">Ctrl + V</span> - Pegar</li>
+                            <li><span class="shortcut">Ctrl + A</span> - Seleccionar todo</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="two-columns">
+                    <div class="column">
+                        <h4>Atajos de Navegación</h4>
+                        <ul>
+                            <li><span class="shortcut">Flechas</span> - Moverse entre celdas</li>
+                            <li><span class="shortcut">Ctrl + Inicio</span> - Ir a A1</li>
+                            <li><span class="shortcut">Ctrl + Fin</span> - Ir a última celda</li>
+                            <li><span class="shortcut">Ctrl + Flechas</span> - Moverse por datos</li>
+                            <li><span class="shortcut">F2</span> - Editar celda activa</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>Atajos de Fórmulas</h4>
+                        <ul>
+                            <li><span class="shortcut">F4</span> - Alternar referencia absoluta/relativa</li>
+                            <li><span class="shortcut">Ctrl + `</span> - Mostrar/ocultar fórmulas</li>
+                            <li><span class="shortcut">F9</span> - Calcular todas las hojas</li>
+                            <li><span class="shortcut">Shift + F3</span> - Insertar función</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><i class="fas fa-tasks"></i> Ejercicio Práctico</h2>
+                
+                <div class="exercise">
+                    <h3>Crea tu primera hoja de cálculo</h3>
+                    <p>Sigue estos pasos para crear una hoja de cálculo simple que aplique todo lo aprendido:</p>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Abrir y configurar:</strong> Abre Excel y crea un nuevo libro en blanco.
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Crear encabezados:</strong> En las celdas A1, B1 y C1 escribe: "Producto", "Cantidad" y "Precio".
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Ingresar datos:</strong> En la columna A (desde A2) escribe nombres de productos. En la columna B, cantidades. En la columna C, precios.
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Crear fórmula:</strong> En la celda D1 escribe "Total". En D2, crea la fórmula <strong>=B2*C2</strong> para calcular el total por producto.
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <strong>Copiar fórmula:</strong> Selecciona D2 y arrastra el cuadrito en la esquina inferior derecha hacia abajo para copiar la fórmula a las demás celdas.
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <strong>Calcular gran total:</strong> En una celda debajo de la última fila, usa la fórmula <strong>=SUMA(D2:D5)</strong> para sumar todos los totales.
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <strong>Guardar:</strong> Guarda el libro como "Mi_Primera_Hoja_Calculo.xlsx".
+                        </div>
+                    </div>
+                    
+                    <p><strong>¡Felicidades!</strong> Has creado tu primera hoja de cálculo funcional en Excel con datos, fórmulas y cálculos automáticos.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Manual Básico de Microsoft Excel - Parte 1 | Introducción, Interfaz y Funciones Básicas</p>
+            <a href="#" class="next-button">Próxima Parte: Funciones Avanzadas, Gráficos y Análisis de Datos</a>
+        </div>
+    </div>
+</body>
+</html>
